@@ -17,7 +17,8 @@ var UIController = (function(){
     var DOMSettings = {
         inputType: '.add__type',
         inputDescription: '.add__description',
-        inputValue: '.add__value'
+        inputValue: '.add__value',
+        inputBtn: '.add__btn'
     }
 
     return {
@@ -44,13 +45,8 @@ var UIController = (function(){
 // Global app controller
 var controller = (function(budgetCrtl, UICrtl){
 
-    var Dom = UICrtl.getDomSettings();
-
-    var crtlAddItem = function(){
-
-    }
-
-    document.querySelector('.add__btn').addEventListener('click', function(){
+    var setupEventListeners = function(){
+        document.querySelector(DOM.inputBtn).addEventListener('click', function(){
         console.log('dziala');
     });
 
@@ -60,6 +56,15 @@ var controller = (function(budgetCrtl, UICrtl){
         }
 
     });
+    }
+
+    var DOM = UICrtl.getDomSettings();
+
+    var crtlAddItem = function(){
+
+    }
+
+
 
 
 })(budgetController, UIController);
