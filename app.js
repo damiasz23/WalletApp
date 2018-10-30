@@ -137,18 +137,27 @@ var controller = (function(budgetCrtl, UICrtl){
 
     });
  };
+    var updateBudget = function(){
+
+    }
 
     var crtlAddItem = function(){
         var input, newItem;
 
         //Get input data:
         input = UICrtl.getInput();
+
+        if(input.description !== "" && !isNaN(input.value) && input.value > 0){
         // Add item to the budget controller
         newItem = budgetCrtl.addItem(input.type, input.description, input.value);
         //Add item to UI
         UICrtl.addListItem(newItem, input.type);
         //Clear the fields
         UICrtl.clearFields();
+
+        updateBudget();
+           }
+
 
 
     };
