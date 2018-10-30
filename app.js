@@ -73,7 +73,7 @@ var UIController = (function(){
             return {
             type: document.querySelector(DOMSettings.inputType).value,
             description: document.querySelector(DOMSettings.inputDescription).value,
-            value: document.querySelector(DOMSettings.inputValue).value
+            value: parseFloat(document.querySelector(DOMSettings.inputValue).value)
 
             };
         },
