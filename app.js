@@ -1,11 +1,46 @@
 // Budget Controller
 var budgetController = (function(){
 
+    var Expense = function(id, description, value){
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+
+    var Income = function(id, description, value){
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+
+    var data = {
+        allItems: {
+            exp: [],
+            inc: [],
+        },
+        totals: {
+            exp: 0,
+            inc: 0
+        }
+    };
+
+    return {
+        addItem: function(type, des, val){
+            var newItem, ID;
+
+            if(type === 'exp'){
+               newItem = new Expense(ID, des, val);
+               }
+            else if(type === 'inc'){
+                newItem = new Income(ID, des, val);
+                    }
+            data.allItems[type].push(newItem);
+            return newItem;
+        }
+
+    };
+
 })();
-
-
-
-
 
 
 
@@ -43,14 +78,14 @@ var UIController = (function(){
 // Global app controller
 var controller = (function(budgetCrtl, UICrtl){
 
-    var setupEventListeners = function(){
+        var setupEventListeners = function(){
 
-        var DOM = UICrtl.getDomSettings();
+            var DOM = UICrtl.getDomSettings();
 
-        document.querySelector(DOM.inputBtn).addEventListener('click', crtlAddItem);
+            document.querySelector(DOM.inputBtn).addEventListener('click', crtlAddItem);
 
-    document.addEventListener('keypress', function(event){
-        if(event.keyCode === 13 || event.which === 13){
+            document.addEventListener('keypress', function(event){
+                if(event.keyCode === 13 || event.which === 13){
             crtlAddItem();
         }
 
@@ -58,8 +93,10 @@ var controller = (function(budgetCrtl, UICrtl){
  };
 
     var crtlAddItem = function(){
+        //   Get input data:
         var input = UICrtl.getInput();
         console.log(input);
+
 
     };
 
