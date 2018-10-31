@@ -18,6 +18,7 @@ var budgetController = (function(){
         data.allItems[type].forEach(function(cur){
             sum = sum + cur;
         });
+        data.totals[type] = sum;
     };
 
     var data = {
