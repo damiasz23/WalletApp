@@ -44,6 +44,13 @@ var budgetController = (function(){
             return newItem;
         },
 
+
+        calculateBugdet: function(){
+          //calculate total income and expenses
+          //calculate budget
+        // calculate the percentage
+        },
+
         testing: function(){
             console.log(data);
         }
@@ -73,7 +80,7 @@ var UIController = (function(){
             return {
             type: document.querySelector(DOMSettings.inputType).value,
             description: document.querySelector(DOMSettings.inputDescription).value,
-            value: parseFloat(document.querySelector(DOMSettings.inputValue).value)
+            value: parseFloat(document.querySelector(DOMSettings.inputValue).value) // parseFloat() change String for float
 
             };
         },
@@ -139,7 +146,7 @@ var controller = (function(budgetCrtl, UICrtl){
  };
     var updateBudget = function(){
 
-    }
+    };
 
     var crtlAddItem = function(){
         var input, newItem;
@@ -154,7 +161,7 @@ var controller = (function(budgetCrtl, UICrtl){
         UICrtl.addListItem(newItem, input.type);
         //Clear the fields
         UICrtl.clearFields();
-
+        //Calculate budget
         updateBudget();
            }
 
