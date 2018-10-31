@@ -13,6 +13,13 @@ var budgetController = (function(){
         this.value = value;
     };
 
+    var calculateTotal = function(type){
+        var sum = 0;
+        data.allItems[type].forEach(function(cur){
+            sum = sum + cur;
+        });
+    };
+
     var data = {
         allItems: {
             exp: [],
