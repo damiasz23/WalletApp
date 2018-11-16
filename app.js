@@ -147,7 +147,26 @@ var UIController = (function(){
         percentageLabel: '.budget__expenses--percentage',
         container: '.container',
         itemPercentagelabel: '.item__percentage'
-    }
+    };
+
+    var formatNumber = function(num, type){
+            var numSplit, int, dec;
+            num = Math.abs(num);
+            num = num.toFixed(2);
+
+            numSplit = num.split('.');
+            int = numSplit[0];
+            if(int.length > 3){
+               int = int.substr(0, int.length -3) + ',' + int.substr(int.length - 3, 3);
+               }
+
+            dec = numSplit[1];
+
+
+
+            return (type === 'exp' ? '-' : '+')+ ' ' + int + '.' + dec;
+        };
+
 
     return {
         getInput: function(){
@@ -174,7 +193,7 @@ var UIController = (function(){
             // Replace placeholder with actual data
             newHtem = html.replace('%id%', obj.id);
             newHtem = newHtem.replace('%description%', obj.description);
-            newHtem = newHtem.replace('%value%', obj.value);
+            newHtem = newHtem.replace('%value%',formatNumber(obj.value));
             //Insert the HTML into the DOM
 
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtem);
@@ -197,9 +216,12 @@ var UIController = (function(){
             fieldsArr[0].focus();
         },
         dispalyBudget:  function(obj){
-            document.querySelector(DOMSettings.budgetLabel).textContent = obj.budget;
-            document.querySelector(DOMSettings.incomeLabel).textContent = obj.totalInc;
-            document.querySelector(DOMSettings.expensesLabel).textContent = obj.totalExp;
+            var type;
+            obj.budget > 0 ? type = 'inc' : type = 'exp';
+
+            document.querySelector(DOMSettings.budgetLabel).textContent = formatNumber(obj.budget, type);
+            document.querySelector(DOMSettings.incomeLabel).textContent = formatNumber(obj.totalInc, 'inc');
+            document.querySelector(DOMSettings.expensesLabel).textContent = formatNumber(obj.totalExp, 'exp');
             if(obj.percentege > 0){
                 document.querySelector(DOMSettings.percentageLabel).textContent = obj.percentege + '%';
             }else {
